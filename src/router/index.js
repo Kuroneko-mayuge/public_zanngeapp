@@ -1,22 +1,28 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Chatroom from '../views/Chatroom.vue'
+import firebase from 'firebase'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/chatroom/:roomID',
+    name: 'chatroom',
+    component: Chatroom,
+    beforeEnter: function(to,from,next){
+      const nextDoc = firebase.firestore().collection('chatroom').doc(to.params.roomID);
+      nextDoc.get()
+      .then((doc) => {
+        const checkdata = (doc.data().member).length;
+        if(checkdata === 2){
+          next()
+        }else{
+          alert("マッチングエラー")
+          next('/');
+        }
+      })
+    }
   }
 ]
 
