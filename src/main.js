@@ -21,6 +21,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
+Vue.prototype.$db = firebase.firestore().collection('chatroom');
 
 new Vue({
   router,

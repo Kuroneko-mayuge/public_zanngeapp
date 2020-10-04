@@ -21,7 +21,6 @@
 </template>
 
 <script>
-import firebase from 'firebase'
 export default {
   name: 'Chatroom',
   data: () => ({
@@ -31,8 +30,7 @@ export default {
   methods: {
     doSend(){
       const id = this.$route.params.roomID;
-      const chatroomRef = firebase.firestore().collection('chatroom');
-      const messageRef = chatroomRef.doc(id).collection('messages');
+      const messageRef = this.$db.doc(id).collection('messages');
 
       const keyid = Math.floor( Math.random() * (999999 + 1 - 1) ) + 1; //forループのためのkeyid
       const createdTime = new Date();
@@ -44,8 +42,7 @@ export default {
   },
   created: function() {
     const id = this.$route.params.roomID;
-    const chatroomRef = firebase.firestore().collection('chatroom');
-    const messageRef = chatroomRef.doc(id).collection('messages');
+    const messageRef = this.$db.doc(id).collection('messages');
     const _this = this
 
     //firestoreのデータが更新されたら、チャット表示を更新

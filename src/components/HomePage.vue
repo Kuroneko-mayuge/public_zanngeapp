@@ -39,10 +39,9 @@ export default {
     },
     makeChatroom: function(){
       this.loading = true;
-      const roomRef =  firebase.firestore().collection('chatroom');
       const roomid = Math.random().toString(34).substring(4); //ランダムにルームIDを生成
       //firestoreにチャットルームを登録
-      roomRef.doc(roomid).set({
+      this.$db.doc(roomid).set({
         roomID:roomid,
         member: this.member,
         status: "pending"
@@ -53,8 +52,8 @@ export default {
       }
      //マッチング処理
       let match = async() => {
-        await delay(1000);
-        roomRef.doc(roomid).get()
+        await delay(900);
+        this.$db.doc(roomid).get()
         .then((doc) => {
           let catchdata = (doc.data().member).length;
           if (catchdata === 2){
@@ -67,7 +66,7 @@ export default {
             match();
           }
           else{
-            roomRef.doc(roomid).delete()
+            this.$db.doc(roomid).delete()
             .then(function(){
             alert("誰もいないみたい！")
             location.href="/";
