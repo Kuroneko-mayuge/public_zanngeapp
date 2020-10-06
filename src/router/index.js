@@ -10,6 +10,7 @@ const routes = [
     path: '/chatroom/:roomID',
     name: 'chatroom',
     component: Chatroom,
+    //ルート遷移が起きる前に、メンバーが二人以上いないか確認
     beforeEnter: function(to,from,next){
       const nextDoc = firebase.firestore().collection('chatroom').doc(to.params.roomID);
       nextDoc.get()

@@ -5,8 +5,8 @@
     <!-- チャット部分 -->
     <div class="chat">
       <div v-for="comment in comments" :key="comment.id">
-        <v-card color="#E3F2FD" v-if="comment.name === 'Taro2'" id="mine">{{ comment.text }}</v-card>
-        <v-card v-else id="him">{{ comment.text }}</v-card>
+        <v-card color="#E3F2FD" v-if="comment.name === getMyName" id="mine">{{ comment.text }}</v-card>
+        <v-card v-else id="him">{{ comment.name }}</v-card>
       </div>
     </div>
     <!-- コメント送信部分 -->
@@ -30,15 +30,21 @@ export default {
     comments: [],
     input: "",
   }),
+  computed: {
+    //ここではMyname配列から名前だけをString型で抽出することを想定
+    getMyName: function(){
+      return this.$store.state.myName[0];
+    }
+  },
   methods: {
     doSend(){
       if (this.input !== ""){
         const id = this.$route.params.roomID;
         const messageRef = this.$db.doc(id).collection('messages');
 
-        const keyid = Math.floor( Math.random() * (999999 + 1 - 1) ) + 1; //forループのためのkeyid
+        const keyid = Math.floor( Math.random() * (999999 + 1 - 1) ) + 1; //forループのための便宜的なkeyid
         const createdTime = new Date();
-        const newItem = { id:keyid, name:"Taro2", text:this.input, createdAt:createdTime };
+        const newItem = { id:keyid, name:this.getMyName, text:this.input, createdAt:createdTime };
         messageRef.add(newItem);
 
         this.input = "";
