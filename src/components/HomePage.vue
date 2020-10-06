@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container class="container">
     <v-row>
         <v-col align="center">
           <v-btn @click="makeChatroom" v-if="isOnHomePage()"
@@ -24,10 +24,14 @@ import Loading from '@/components/Loading'
 export default {
   name: "HomePage",
   data: () => ({
-    member: ["Ryo2"],//ログインユーザー名
     loading: false,
     trycount: 10,
   }),
+  computed: {
+    getMyName: function(){
+      return this.$store.state.myName;
+    }
+  },
   components: {
     Loading
   },
@@ -43,7 +47,7 @@ export default {
       //firestoreにチャットルームを登録
       this.$db.doc(roomid).set({
         roomID:roomid,
-        member: this.member,
+        member: this.getMyName,
         status: "pending"
         })
       //ms秒止まる

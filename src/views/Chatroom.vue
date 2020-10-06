@@ -1,22 +1,25 @@
 <template>
   <div>
+    <div class="header"><a href="/">HOME</a></div>
+
     <!-- チャット部分 -->
-    <div class="my-parts" v-for="comment in comments" :key="comment.id">
-      <div class="my-parts-content">
-        <p>{{ comment.text }}</p>
+    <div class="chat">
+      <div v-for="comment in comments" :key="comment.id">
+        <v-card color="#E3F2FD" v-if="comment.name === 'Taro2'" id="mine">{{ comment.text }}</v-card>
+        <v-card v-else id="him">{{ comment.text }}</v-card>
       </div>
     </div>
-    
     <!-- コメント送信部分 -->
-    <form action="" @submit.prevent="doSend">
-      <textarea 
-        v-model="input"
-        class="textlines"
-        @keydown.enter.exact.prevent="doSend"></textarea>
-      <button type="submit">Send</button>
-    </form>
+    <div class="input_container">
+      <form action="" @submit.prevent="doSend">
+        <textarea
+          v-model="input"
+          class="textlines"
+          @keydown.enter.exact.prevent="doSend"></textarea>
+        <button type="submit">Send</button>
+      </form>
+    </div>
 
-  <a href="/">HOME</a>
   </div>
 </template>
 
@@ -29,15 +32,17 @@ export default {
   }),
   methods: {
     doSend(){
-      const id = this.$route.params.roomID;
-      const messageRef = this.$db.doc(id).collection('messages');
+      if (this.input !== ""){
+        const id = this.$route.params.roomID;
+        const messageRef = this.$db.doc(id).collection('messages');
 
-      const keyid = Math.floor( Math.random() * (999999 + 1 - 1) ) + 1; //forループのためのkeyid
-      const createdTime = new Date();
-      const newItem = { id:keyid, text:this.input, createdAt:createdTime };
-      messageRef.add(newItem);
+        const keyid = Math.floor( Math.random() * (999999 + 1 - 1) ) + 1; //forループのためのkeyid
+        const createdTime = new Date();
+        const newItem = { id:keyid, name:"Taro2", text:this.input, createdAt:createdTime };
+        messageRef.add(newItem);
 
-      this.input = "";
+        this.input = "";
+      }
     }
   },
   created: function() {
@@ -59,44 +64,51 @@ export default {
 </script>
 
 <style>
+.header {
+  position: fixed;
+  top: 1%;
+}
+
+.chat {
+  margin: 1% 3%;
+  width: 95%;
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: auto;
+}
+
+#mine {
+  width: 40%;
+  margin-right: auto;
+  padding: 2% 15% 2% 1%;
+}
+#him {
+  width: 40%;
+  margin-left: auto;
+  padding: 2% 15% 2% 1%;
+}
+
 /* チャット入力欄 */
+.input_container {
+  position: fixed;
+  bottom: 5%;
+  width: 100%;
+  margin: 0;
+}
+
 .textlines {
   border: 2px solid #0a0;  /* 枠線 */
   border-radius: 0.67em;   /* 角丸 */
   padding: 0.5em;          /* 内側の余白量 */
   background-color: snow;  /* 背景色 */
-  width: 20em;             /* 横幅 */
-  height: 120px;           /* 高さ */
+  width: 70%;             /* 横幅 */
+  height: 80%;           /* 高さ */
   font-size: 1em;          /* 文字サイズ */
   line-height: 1.2;        /* 行の高さ */
 }
 
 /* チャットコメント部分 */
-.my-parts .my-parts-content {
-	float: left;
-	width: 60%;
-	width: calc(100% - (80px + 20px));
-	box-sizing: border-box;
-	background: #FFCC80;
-	color: #333;
-	padding: .8em;
-	margin-left: 20px;
-  margin-bottom: 10px;
-	position: relative;
-	border-radius: 8px;
-	text-align: left;
-}
-.my-parts .my-parts-content::after {
-	content: "";
-	position: absolute;
-	top: 50%;
-	right: 100%;
-	margin-top: -10px;
-	border: 10px solid transparent;
-	border-right: 10px solid #FFCC80;
-	z-index: 2;
-}
-.my-parts .my-parts-content > :last-child {
-	margin-bottom: 0;
-}
+
 </style>
