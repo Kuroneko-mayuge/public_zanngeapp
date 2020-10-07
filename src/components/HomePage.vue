@@ -62,7 +62,6 @@ export default {
           let catchdata = (doc.data().member).length;
           if (catchdata === 2){
             this.loading = false;
-            alert("マッチング成功！")
             this.$router.push({name:'chatroom', params: { roomID: roomid }})
           }
           else if (this.trycount > 0){
@@ -106,7 +105,6 @@ export default {
                   status: "useing"
                 });
                 this.loading = false;
-                alert("マッチング成功！")
                 this.$router.push({name:'chatroom', params: { roomID: roomid }});
               }else{
                 this.loading = false;

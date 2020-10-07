@@ -1,6 +1,9 @@
 <template>
   <div>
-    <div class="header"><a href="/">HOME</a></div>
+    <div class="header">
+      <a href="/">HOME</a>
+      <p>{{ lastTime }}</p>
+    </div>
 
     <!-- チャット部分 -->
     <div class="chat">
@@ -29,6 +32,7 @@ export default {
   data: () => ({
     comments: [],
     input: "",
+    lastTime: 15,
   }),
   computed: {
     //ここではMyname配列から名前だけをString型で抽出することを想定
@@ -49,13 +53,19 @@ export default {
 
         this.input = "";
       }
-    }
+    },
   },
   created: function() {
+    const _this = this;
+    const countDown = setInterval(function(){
+      _this.lastTime--;
+      if(_this.lastTime <= 0){
+      clearInterval(countDown);
+      alert("Finish!");
+    }
+  }, 1000);
     const id = this.$route.params.roomID;
     const messageRef = this.$db.doc(id).collection('messages');
-    const _this = this
-
     //firestoreのデータが更新されたら、チャット表示を更新
     messageRef.orderBy('createdAt')
     .onSnapshot(function (querySnapshot){
