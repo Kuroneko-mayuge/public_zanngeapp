@@ -1,5 +1,5 @@
 <template>
-  <v-container class="container">
+  <v-container>
     <v-row>
         <v-col align="center">
           <v-btn @click="makeChatroom" v-if="isOnHomePage()"

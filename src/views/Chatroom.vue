@@ -12,6 +12,9 @@
         <v-card v-else id="him">{{ comment.name }}</v-card>
       </div>
     </div>
+
+    <Review v-if="lastTime <= 0"></Review>
+
     <!-- コメント送信部分 -->
     <div class="input_container">
       <form action="" @submit.prevent="doSend">
@@ -27,51 +30,63 @@
 </template>
 
 <script>
+import Review from '@/components/Review'
 export default {
   name: 'Chatroom',
   data: () => ({
     comments: [],
     input: "",
-    lastTime: 15,
+    lastTime: 20,
   }),
   computed: {
-    //ここではMyname配列から名前だけをString型で抽出することを想定
+    //storeのMynameから名前をString型で抽出
     getMyName: function(){
       return this.$store.state.myName[0];
     }
   },
+  components: {
+    Review
+  },
   methods: {
+    //チャット送信処理
     doSend(){
       if (this.input !== ""){
-        const id = this.$route.params.roomID;
-        const messageRef = this.$db.doc(id).collection('messages');
-
+        const roomid = this.$route.params.roomID;
+        const messageRef = this.$db.doc(roomid).collection('messages');
         const keyid = Math.floor( Math.random() * (999999 + 1 - 1) ) + 1; //forループのための便宜的なkeyid
         const createdTime = new Date();
         const newItem = { id:keyid, name:this.getMyName, text:this.input, createdAt:createdTime };
         messageRef.add(newItem);
-
         this.input = "";
       }
     },
   },
   created: function() {
     const _this = this;
+
+    //カウントダウン処理
+    localStorage.loginId = Math.random().toString(34).substring(4); //チャットルームの参加を1つに制限する
+    if (localStorage.lastTime && localStorage.loginId){
+      this.lastTime = localStorage.lastTime;
+    }
     const countDown = setInterval(function(){
-      _this.lastTime--;
       if(_this.lastTime <= 0){
       clearInterval(countDown);
       alert("Finish!");
+      _this.lastTime = 20; //あとで消す
     }
-  }, 1000);
-    const id = this.$route.params.roomID;
-    const messageRef = this.$db.doc(id).collection('messages');
-    //firestoreのデータが更新されたら、チャット表示を更新
+      _this.lastTime--;
+      localStorage.lastTime = _this.lastTime;
+    }, 1000);
+
+    //チャット更新処理
+    const roomid = this.$route.params.roomID;
+    const messageRef = this.$db.doc(roomid).collection('messages');
     messageRef.orderBy('createdAt')
     .onSnapshot(function (querySnapshot){
       _this.comments = []
       querySnapshot.forEach(function(doc) {
-        let catchdata = doc.data()
+        const catchdata = doc.data()
         _this.comments.push(catchdata)
       })
     })
