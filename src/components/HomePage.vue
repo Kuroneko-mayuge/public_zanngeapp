@@ -14,6 +14,11 @@
         color="blue" class="white--text">チャットルームに参加</v-btn>
       </v-col>
     </v-row>
+    <v-row>
+      <v-col align="center">
+        <span class="title">ようこそ {{getMyName}} さん！！！</span>
+      </v-col>
+    </v-row>
     <Loading v-show="loading"></Loading>
     <router-view></router-view>
   </v-container>
@@ -23,6 +28,7 @@
 import firebase from 'firebase'
 import Loading from '@/components/Loading'
 import Header from '@/components/Header'
+// import { mapGetters } from 'vuex'
 export default {
   name: "HomePage",
   data: () => ({

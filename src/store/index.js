@@ -13,8 +13,14 @@ export default new Vuex.Store({
     setLoginUser (state, user) {
       state.login_user = user
     },
+    setMyName (state, displayName) {
+      state.myName[0] = displayName
+    },
     deleteLoginUser (state) {
       state.login_user = null
+    },
+    deleteMyName (state, displayName) {
+      state.myName[0] = displayName
     }
   },
   actions: {
@@ -25,17 +31,23 @@ export default new Vuex.Store({
     setLoginUser ({ commit }, user) {
       commit('setLoginUser', user)
     },
+    setMyName ({ commit }, user) {
+      commit('setMyName', user.displayName)
+    },
     logout () {
       firebase.auth().signOut()
     },
     deleteLoginUser ({ commit }) {
       commit('deleteLoginUser')
+    },
+    deleteMyName ({ commit }) {
+      commit('deleteMyName', 'Ryo')
     }
   },
   modules: {
   },
   getters: {
-    userName: state => state.login_user ? state.login_user.displayName : '',
+    userName: state => state.myName[0],
     photoURL: state => state.login_user ? state.login_user.photoURL : ''
   }
 })
