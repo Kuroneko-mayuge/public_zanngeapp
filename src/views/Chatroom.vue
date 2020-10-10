@@ -2,7 +2,6 @@
   <div>
     <div class="header">
       <a href="/">HOME</a>
-      <p>{{ lastTime }}</p>
     </div>
 
     <!-- チャット部分 -->
@@ -13,7 +12,7 @@
       </div>
     </div>
 
-    <Review v-if="lastTime <= 0"></Review>
+    <Review v-if="diffTime < 0"></Review>
 
     <!-- コメント送信部分 -->
     <div class="input_container">
@@ -36,7 +35,8 @@ export default {
   data: () => ({
     comments: [],
     input: "",
-    lastTime: 20,
+    reviewTime: "",
+    diffTime: "",
   }),
   computed: {
     //storeのMynameから名前をString型で抽出
@@ -60,27 +60,28 @@ export default {
         this.input = "";
       }
     },
+    checkTime(){
+      const nowTime = new Date().getTime();
+      this.diffTime = this.reviewTime - nowTime;
+    }
   },
   created: function() {
     const _this = this;
-
-    //カウントダウン処理
-    localStorage.loginId = Math.random().toString(34).substring(4); //チャットルームの参加を1つに制限する
-    if (localStorage.lastTime && localStorage.loginId){
-      this.lastTime = localStorage.lastTime;
-    }
-    const countDown = setInterval(function(){
-      if(_this.lastTime <= 0){
-      clearInterval(countDown);
-      alert("Finish!");
-      _this.lastTime = 20; //あとで消す
-    }
-      _this.lastTime--;
-      localStorage.lastTime = _this.lastTime;
-    }, 1000);
-
-    //チャット更新処理
     const roomid = this.$route.params.roomID;
+    //終了時刻を取得
+    this.$db.doc(roomid).get()
+    .then((doc) => {
+      _this.reviewTime = Date.parse(doc.data().finishTime);
+    });
+    //終了時刻から現在時刻を１秒毎に引く
+    if (_this.diffTime >= 0){
+      const countDown = setInterval(() => {
+        _this.checkTime();
+        if(_this.diffTime < 0){
+          clearInterval(countDown);
+        }}, 1000);
+      }
+    //チャット更新処理
     const messageRef = this.$db.doc(roomid).collection('messages');
     messageRef.orderBy('createdAt')
     .onSnapshot(function (querySnapshot){

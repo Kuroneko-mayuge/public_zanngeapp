@@ -43,12 +43,35 @@ export default {
     },
     makeChatroom: function(){
       this.loading = true;
-      const roomid = Math.random().toString(34).substring(4); //ランダムにルームIDを生成
+      //ランダムにルームIDを生成
+      const roomid = Math.random().toString(34).substring(4); 
+      //終了時刻を設定
+      let targetTime = new Date();
+      targetTime.setMinutes(targetTime.getMinutes() + 2);
+      targetTime = getStringFromDate(targetTime);
+      //日付から文字列に変換する関数
+      function getStringFromDate(date) {
+        var year_str = date.getFullYear();
+        var month_str = 1 + date.getMonth();
+        var day_str = date.getDate();
+        var hour_str = date.getHours();
+        var minute_str = date.getMinutes();
+        var second_str = date.getSeconds();
+        let format_str = 'YYYY-MM-DD hh:mm:ss';
+        format_str = format_str.replace(/YYYY/g, year_str);
+        format_str = format_str.replace(/MM/g, month_str);
+        format_str = format_str.replace(/DD/g, day_str);
+        format_str = format_str.replace(/hh/g, hour_str);
+        format_str = format_str.replace(/mm/g, minute_str);
+        format_str = format_str.replace(/ss/g, second_str);     
+        return format_str;
+      }
       //firestoreにチャットルームを登録
       this.$db.doc(roomid).set({
         roomID:roomid,
         member: this.getMyName,
-        status: "pending"
+        status: "pending",
+        finishTime: targetTime
         })
       //ms秒止まる
       async function delay(ms){
