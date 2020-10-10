@@ -49,7 +49,6 @@ export default {
       }
     },
     makeChatroom: function(){
-      console.log(this.uid)
       this.loading = true;
       //ランダムにルームIDを生成
       const roomid = Math.random().toString(34).substring(4); 
