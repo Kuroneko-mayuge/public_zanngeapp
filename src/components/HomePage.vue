@@ -36,10 +36,7 @@ export default {
     trycount: 10,
   }),
   computed: {
-    getMyName: function(){
-      return this.$store.state.myName;
-    },
-    ...mapGetters(['userName'])
+    ...mapGetters(['userName', 'uid'])
   },
   components: {
     Loading,
@@ -52,6 +49,7 @@ export default {
       }
     },
     makeChatroom: function(){
+      console.log(this.uid)
       this.loading = true;
       //ランダムにルームIDを生成
       const roomid = Math.random().toString(34).substring(4); 
@@ -79,7 +77,7 @@ export default {
       //firestoreにチャットルームを登録
       this.$db.doc(roomid).set({
         roomID: roomid,
-        member: {host: this.getMyName},
+        member: {host: this.uid},
         status: "pending",
         finishTime: targetTime
         })
@@ -92,8 +90,8 @@ export default {
         await delay(900);
         this.$db.doc(roomid).get()
         .then((doc) => {
-          let catchdata = (doc.data().member).length;
-          if (catchdata === 2){
+          // let catchdata = (doc.data().member);
+          if ('visitor' in (doc.data().member)){
             this.loading = false;
             this.$router.push({name:'chatroom', params: { roomID: roomid }})
           }
@@ -130,19 +128,14 @@ export default {
           .then((querySnapshot) => {
             let catchdata = querySnapshot.docs[0] //ない場合はundefined
             if (catchdata) {
-              if ((catchdata.data().member).length === 1){
-                roomid = catchdata.data().roomID
-                //取得したチャットルームのメンバーに追加
-                roomRef.doc(roomid).update({
-                  member: firebase.firestore.FieldValue.arrayUnion("this.member[0]"),
-                  status: "useing"
-                });
-                this.loading = false;
-                this.$router.push({name:'chatroom', params: { roomID: roomid }});
-              }else{
-                this.loading = false;
-                alert("マッチングエラー");
-              }
+              roomid = catchdata.data().roomID
+              //取得したチャットルームのメンバーに追加
+              roomRef.doc(roomid).update({
+                member: {visitor: this.uid},
+                status: "useing"
+              });
+              this.loading = false;
+              this.$router.push({name:'chatroom', params: { roomID: roomid }});
             }else if (this.trycount > 0){
               this.trycount -= 1
               match();
