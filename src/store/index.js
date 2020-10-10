@@ -47,7 +47,7 @@ export default new Vuex.Store({
   modules: {
   },
   getters: {
-    userName: state => state.myName[0],
+    userName: state => state.login_user ? state.login_user.displayName : 'Ryo',
     photoURL: state => state.login_user ? state.login_user.photoURL : ''
   }
 })
