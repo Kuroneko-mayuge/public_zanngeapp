@@ -77,7 +77,7 @@ export default {
       //firestoreにチャットルームを登録
       this.$db.doc(roomid).set({
         roomID: roomid,
-        member: {host: this.uid},
+        member: {host: this.uid , visitor: null},
         status: "pending",
         finishTime: targetTime
         })
@@ -91,7 +91,7 @@ export default {
         this.$db.doc(roomid).get()
         .then((doc) => {
           // let catchdata = (doc.data().member);
-          if ('visitor' in (doc.data().member)){
+          if (doc.data().member.visitor){
             this.loading = false;
             this.$router.push({name:'chatroom', params: { roomID: roomid }})
           }
@@ -131,7 +131,7 @@ export default {
               roomid = catchdata.data().roomID
               //取得したチャットルームのメンバーに追加
               roomRef.doc(roomid).update({
-                member: {visitor: this.uid},
+                "member.visitor": this.uid,
                 status: "useing"
               });
               this.loading = false;
