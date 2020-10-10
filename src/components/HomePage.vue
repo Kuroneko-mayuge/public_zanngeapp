@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <Header/>
+    <Header v-if="isOnHomePage()"></Header>
     <v-row>
         <v-col align="center">
           <v-btn @click="makeChatroom" v-if="isOnHomePage()"
@@ -16,7 +16,7 @@
     </v-row>
     <v-row>
       <v-col align="center">
-        <span class="title">ようこそ {{userName}} さん！！！</span>
+        <span v-if="isOnHomePage()" class="title">ようこそ {{userName}} さん！！！</span>
       </v-col>
     </v-row>
     <Loading v-show="loading"></Loading>
@@ -28,6 +28,7 @@
 import firebase from 'firebase'
 import Loading from '@/components/Loading'
 import Header from '@/components/Header'
+import { mapActions } from 'vuex'
 import { mapGetters } from 'vuex'
 export default {  
   name: "HomePage",
@@ -43,6 +44,7 @@ export default {
     Header
   },
   methods: {
+    ...mapActions(['setHostFlg']),
     isOnHomePage: function(){
       if (this.$route.fullPath === '/' && this.loading === false){
         return true;
@@ -92,6 +94,7 @@ export default {
           // let catchdata = (doc.data().member);
           if (doc.data().member.visitor){
             this.loading = false;
+            this.setHostFlg(true)
             this.$router.push({name:'chatroom', params: { roomID: roomid }})
           }
           else if (this.trycount > 0){
