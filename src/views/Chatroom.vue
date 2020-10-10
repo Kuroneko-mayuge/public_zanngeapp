@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="header">
-      <a href="/">HOME</a>
+      <a href="/">退出する</a>
     </div>
 
     <!-- チャット部分 -->
@@ -99,6 +99,7 @@ export default {
 .header {
   position: fixed;
   top: 1%;
+  
 }
 
 .chat {

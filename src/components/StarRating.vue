@@ -1,10 +1,12 @@
 <template>
   <div>
-    <star-rating v-bind:increment="0.5"
-    v-bind:max-rating="3"
+    <star-rating
+    v-model="rating"
+    :increment="0.5"
+    :max-rating="5"
     inactive-color="#000"
-    active-color="#f00"
-    v-bind:star-size="90">
+    active-color="yellow"
+    :star-size="40">
     </star-rating>
   </div>
 </template>
@@ -14,7 +16,7 @@ import StarRating from 'vue-star-rating'
 export default {
   name: 'Rating',
   data: () => ({
-    rating: 0
+    rating: 3
   }),
   components: {
     StarRating,
