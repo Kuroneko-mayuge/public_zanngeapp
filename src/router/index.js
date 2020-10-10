@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Chatroom from '../views/Chatroom.vue'
-import firebase from 'firebase'
+// import firebase from 'firebase'
 
 Vue.use(VueRouter)
 
@@ -11,19 +11,19 @@ const routes = [
     name: 'chatroom',
     component: Chatroom,
     //ルート遷移が起きる前に、メンバーが二人以上いないか確認
-    beforeEnter: function(to,from,next){
-      const nextDoc = firebase.firestore().collection('chatroom').doc(to.params.roomID);
-      nextDoc.get()
-      .then((doc) => {
-        const checkdata = (doc.data().member).length;
-        if(checkdata === 2){
-          next()
-        }else{
-          alert("マッチングエラー")
-          next('/');
-        }
-      })
-    }
+    // beforeEnter: function(to,from,next){
+    //   const nextDoc = firebase.firestore().collection('chatroom').doc(to.params.roomID);
+    //   nextDoc.get()
+    //   .then((doc) => {
+    //     const checkdata = (doc.data().member).length;
+    //     if(checkdata === 2){
+    //       next()
+    //     }else{
+    //       alert("マッチングエラー")
+    //       next('/');
+    //     }
+    //   })
+    // }
   }
 ]
 
