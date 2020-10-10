@@ -16,7 +16,7 @@
     </v-row>
     <v-row>
       <v-col align="center">
-        <span class="title">ようこそ {{getMyName}} さん！！！</span>
+        <span class="title">ようこそ {{userName}} さん！！！</span>
       </v-col>
     </v-row>
     <Loading v-show="loading"></Loading>
@@ -28,8 +28,8 @@
 import firebase from 'firebase'
 import Loading from '@/components/Loading'
 import Header from '@/components/Header'
-// import { mapGetters } from 'vuex'
-export default {
+import { mapGetters } from 'vuex'
+export default {  
   name: "HomePage",
   data: () => ({
     loading: false,
@@ -38,7 +38,8 @@ export default {
   computed: {
     getMyName: function(){
       return this.$store.state.myName;
-    }
+    },
+    ...mapGetters(['userName'])
   },
   components: {
     Loading,
