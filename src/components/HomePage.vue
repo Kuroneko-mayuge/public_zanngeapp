@@ -78,8 +78,8 @@ export default {
       }
       //firestoreにチャットルームを登録
       this.$db.doc(roomid).set({
-        roomID:roomid,
-        member: this.getMyName,
+        roomID: roomid,
+        member: {host: this.getMyName},
         status: "pending",
         finishTime: targetTime
         })
