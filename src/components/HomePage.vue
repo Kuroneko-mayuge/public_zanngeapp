@@ -16,7 +16,12 @@
     </v-row>
     <v-row>
       <v-col align="center">
-        <span v-if="isOnHomePage()" class="title">ようこそ {{userName}} さん！！！</span>
+        <span v-if="isOnHomePage()" class="title">ようこそ {{userName}} さん！</span>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col align="center">
+        <span v-if="isOnHomePage()"> 評価：{{ userReviewVal }} </span>
       </v-col>
     </v-row>
     <Loading v-show="loading"></Loading>
@@ -37,7 +42,7 @@ export default {
     trycount: 10,
   }),
   computed: {
-    ...mapGetters(['userName', 'uid'])
+    ...mapGetters(['userName', 'uid','userReviewVal'])
   },
   components: {
     Loading,
@@ -56,7 +61,7 @@ export default {
       const roomid = Math.random().toString(34).substring(4); 
       //終了時刻を設定
       let targetTime = new Date();
-      targetTime.setMinutes(targetTime.getMinutes() + 2);
+      targetTime.setMinutes(targetTime.getMinutes() + 0.5); //1分後に終了
       targetTime = getStringFromDate(targetTime);
       //日付から文字列に変換する関数
       function getStringFromDate(date) {
@@ -91,7 +96,6 @@ export default {
         await delay(900);
         this.$db.doc(roomid).get()
         .then((doc) => {
-          // let catchdata = (doc.data().member);
           if (doc.data().member.visitor){
             this.loading = false;
             this.setHostFlg(true)
