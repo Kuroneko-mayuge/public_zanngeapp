@@ -18,13 +18,15 @@ export default {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.setLoginUser(user)
+        this.setMyName(user)
       } else {
         this.deleteLoginUser()
+        this.deleteMyName()
       }
     })
   },
   methods: {
-    ...mapActions(['login','setLoginUser', 'logout', 'deleteLoginUser'])
+    ...mapActions(['login','setLoginUser', 'logout', 'deleteLoginUser', 'setMyName', 'deleteMyName'])
   },
   computed: {
     ...mapGetters(['userName', 'photoURL'])
