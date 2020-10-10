@@ -8,7 +8,7 @@
     <div class="chat">
       <div v-for="comment in comments" :key="comment.id">
         <v-card color="#E3F2FD" v-if="comment.name === userName" id="mine">{{ comment.text }}</v-card>
-        <v-card v-else id="him">{{ comment.name }}</v-card>
+        <v-card v-else id="him">{{ comment.text }}</v-card>
       </div>
     </div>
 
