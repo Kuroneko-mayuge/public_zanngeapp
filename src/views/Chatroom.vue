@@ -7,7 +7,7 @@
     <!-- チャット部分 -->
     <div class="chat">
       <div v-for="comment in comments" :key="comment.id">
-        <v-card color="#E3F2FD" v-if="comment.name === getMyName" id="mine">{{ comment.text }}</v-card>
+        <v-card color="#E3F2FD" v-if="comment.name === userName" id="mine">{{ comment.text }}</v-card>
         <v-card v-else id="him">{{ comment.name }}</v-card>
       </div>
     </div>
@@ -30,6 +30,7 @@
 
 <script>
 import Review from '@/components/Review'
+import { mapGetters } from 'vuex'
 export default {
   name: 'Chatroom',
   data: () => ({
@@ -39,10 +40,7 @@ export default {
     diffTime: "",
   }),
   computed: {
-    //storeのMynameから名前をString型で抽出
-    getMyName: function(){
-      return this.$store.state.myName[0];
-    }
+    ...mapGetters(['userName'])
   },
   components: {
     Review
@@ -55,7 +53,7 @@ export default {
         const messageRef = this.$db.doc(roomid).collection('messages');
         const keyid = Math.floor( Math.random() * (999999 + 1 - 1) ) + 1; //forループのための便宜的なkeyid
         const createdTime = new Date();
-        const newItem = { id:keyid, name:this.getMyName, text:this.input, createdAt:createdTime };
+        const newItem = { id:keyid, name:this.userName, text:this.input, createdAt:createdTime };
         messageRef.add(newItem);
         this.input = "";
       }
