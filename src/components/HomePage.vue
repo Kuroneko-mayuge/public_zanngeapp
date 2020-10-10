@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <Header/>
     <v-row>
         <v-col align="center">
           <v-btn @click="makeChatroom" v-if="isOnHomePage()"
@@ -21,6 +22,7 @@
 <script>
 import firebase from 'firebase'
 import Loading from '@/components/Loading'
+import Header from '@/components/Header'
 export default {
   name: "HomePage",
   data: () => ({
@@ -33,7 +35,8 @@ export default {
     }
   },
   components: {
-    Loading
+    Loading,
+    Header
   },
   methods: {
     isOnHomePage: function(){
