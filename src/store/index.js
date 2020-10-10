@@ -6,21 +6,18 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    myName:["Ryo"],
-    login_user: null
+    login_user: null,
+    host_flg: false
   },
   mutations: {
     setLoginUser (state, user) {
       state.login_user = user
     },
-    setMyName (state, displayName) {
-      state.myName[0] = displayName
-    },
     deleteLoginUser (state) {
       state.login_user = null
     },
-    deleteMyName (state, displayName) {
-      state.myName[0] = displayName
+    setHostFlg (state, isHost) {
+      state.host_flg = isHost
     }
   },
   actions: {
@@ -31,17 +28,14 @@ export default new Vuex.Store({
     setLoginUser ({ commit }, user) {
       commit('setLoginUser', user)
     },
-    setMyName ({ commit }, user) {
-      commit('setMyName', user.displayName)
-    },
     logout () {
       firebase.auth().signOut()
     },
     deleteLoginUser ({ commit }) {
       commit('deleteLoginUser')
     },
-    deleteMyName ({ commit }) {
-      commit('deleteMyName', 'Ryo')
+    setHostFlg ({ commit }, isHost) {
+      commit('setHostFlg', isHost)
     }
   },
   modules: {
@@ -49,6 +43,7 @@ export default new Vuex.Store({
   getters: {
     userName: state => state.login_user ? state.login_user.displayName : 'Ryo',
     photoURL: state => state.login_user ? state.login_user.photoURL : '',
-    uid: state => state.login_user ? state.login_user.uid: null
+    uid: state => state.login_user ? state.login_user.uid: Math.random().toString(34).substring(4),
+    hostFlg: state => state.host_flg
   }
 })
