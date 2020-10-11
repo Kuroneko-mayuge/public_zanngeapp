@@ -4,24 +4,27 @@
     <v-row>
         <v-col align="center">
           <v-btn @click="makeChatroom" v-if="isOnHomePage()"
-          color="blue" class="white--text">チャットルームを作成
+          color="#191970" class="white--text">神父になる
           </v-btn>
         </v-col>
     </v-row>
     <v-row>
       <v-col align="center">
         <v-btn @click="visitChatroom" v-if="isOnHomePage()"
-        color="blue" class="white--text">チャットルームに参加</v-btn>
+        color="#191970" class="white--text">懺悔をする</v-btn>
       </v-col>
     </v-row>
     <v-row>
       <v-col align="center">
-        <span v-if="isOnHomePage()" class="title">ようこそ {{userName}} さん！</span>
+        <span v-if="isOnHomePage()" class="title">ようこそ！ {{userName}} さん</span>
       </v-col>
     </v-row>
     <v-row>
       <v-col align="center">
-        <span v-if="isOnHomePage()"> 評価：{{ userReviewVal }} </span>
+        <span v-if="isOnHomePage()">
+          <span class="heart">❤︎</span>
+        {{ userReviewVal }}
+        </span>
       </v-col>
     </v-row>
     <Loading v-show="loading"></Loading>
@@ -30,6 +33,7 @@
 </template>
 
 <script>
+import common from '@/common.js'
 import firebase from 'firebase'
 import Loading from '@/components/Loading'
 import Header from '@/components/Header'
@@ -62,24 +66,8 @@ export default {
       //終了時刻を設定
       let targetTime = new Date();
       targetTime.setMinutes(targetTime.getMinutes() + 0.5); //1分後に終了
-      targetTime = getStringFromDate(targetTime);
-      //日付から文字列に変換する関数
-      function getStringFromDate(date) {
-        var year_str = date.getFullYear();
-        var month_str = 1 + date.getMonth();
-        var day_str = date.getDate();
-        var hour_str = date.getHours();
-        var minute_str = date.getMinutes();
-        var second_str = date.getSeconds();
-        let format_str = 'YYYY-MM-DD hh:mm:ss';
-        format_str = format_str.replace(/YYYY/g, year_str);
-        format_str = format_str.replace(/MM/g, month_str);
-        format_str = format_str.replace(/DD/g, day_str);
-        format_str = format_str.replace(/hh/g, hour_str);
-        format_str = format_str.replace(/mm/g, minute_str);
-        format_str = format_str.replace(/ss/g, second_str);     
-        return format_str;
-      }
+      targetTime = common.getStringFromDate(targetTime); //firestoreに文字列で日付を登録する
+
       //firestoreにチャットルームを登録
       this.$db.doc(roomid).set({
         roomID: roomid,
@@ -156,3 +144,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.heart {
+  color: red;
+} 
+</style>

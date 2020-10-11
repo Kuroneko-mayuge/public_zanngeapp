@@ -130,7 +130,7 @@ export default {
 }
 
 .textlines {
-  border: 2px solid #0a0;  /* 枠線 */
+  border: 2px solid #191970;  /* 枠線 */
   border-radius: 0.67em;   /* 角丸 */
   padding: 0.5em;          /* 内側の余白量 */
   background-color: snow;  /* 背景色 */

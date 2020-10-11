@@ -1,7 +1,7 @@
 <template>
   <header>
     <div v-if="!$store.state.login_user">
-        <v-btn color='info' @click="login">ログイン</v-btn>
+        <v-btn color="#191970" class="white--text" @click="login">ログイン</v-btn>
     </div>
     <div v-if="$store.state.login_user">
         <img v-if="photoURL" :src="photoURL" @click="logout">

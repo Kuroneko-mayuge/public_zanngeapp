@@ -1,29 +1,29 @@
 <template>
   <v-container>
-    <star-rating
-    v-model="rating"
-    :increment="0.5"
-    :max-rating="5"
-    inactive-color="#000"
-    active-color="yellow"
-    :star-size="40">
-    </star-rating>
+    <star-rate
+    v-model="value"
+    type="heart"
+    active-color="#d4237a"
+    :hover-change="true">
+    </star-rate>
   
-    <v-btn @click="review">評価して終了</v-btn>
+    <v-btn @click="review"
+    color="#191970" class="white--text">評価して終了</v-btn>
+    <div class="heart"></div>
   </v-container>
 </template>
 
 <script>
-import StarRating from 'vue-star-rating'
+import StarRate from 'vue-cute-rate'
 import { mapGetters } from 'vuex'
 import firebase from 'firebase'
 export default {
   name: "Review",
   data:() => ({
-    rating: 3
+    value: 3
   }),
   components: {
-    StarRating
+    StarRate
   },
   computed: {
     ...mapGetters(['hostFlg'])
@@ -40,7 +40,7 @@ export default {
           .then((doc) => {
             if(doc.exists){
               const nowStatus = doc.data().reviewVal;
-              const newStatus = nowStatus + this.rating;
+              const newStatus = nowStatus + this.value;
               targetUserRef.update({
                 reviewVal: newStatus
               }).then(()=>{
@@ -61,7 +61,7 @@ export default {
           .then((doc) => {
             if(doc.exists){
               const nowStatus = doc.data().reviewVal;
-              const newStatus = nowStatus + this.rating;
+              const newStatus = nowStatus + this.value;
               targetUserRef.update({
                 reviewVal: newStatus
               }).then(()=>{
