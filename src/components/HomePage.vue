@@ -1,6 +1,7 @@
 <template>
   <v-container>
     <Header v-if="isOnHomePage()"></Header>
+    <h1 align="center">ZangeApp</h1>
     <v-row>
         <v-col align="center">
           <v-btn @click="makeChatroom" v-if="isOnHomePage()"
@@ -148,5 +149,9 @@ export default {
 <style>
 .heart {
   color: red;
-} 
+}
+h1 {
+  font-family: "HGP行書体";
+  font-size: 400%;
+}
 </style>
