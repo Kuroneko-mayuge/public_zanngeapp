@@ -1,9 +1,9 @@
 <template>
   <header>
-    <div v-if="!$store.state.login_user">
+    <div v-if="!$store.state.login_user" align="right">
         <v-btn color="#191970" class="white--text" @click="login">ログイン</v-btn>
     </div>
-    <div v-if="$store.state.login_user">
+    <div v-if="$store.state.login_user" align="right">
         <img v-if="photoURL" :src="photoURL" @click="logout">
     </div>
   </header>
