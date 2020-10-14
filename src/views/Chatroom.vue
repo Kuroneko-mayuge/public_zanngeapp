@@ -112,8 +112,10 @@ export default {
 
 #mine {
   width: 40%;
+  height: 2%;
   margin-right: auto;
   padding: 2% 15% 2% 1%;
+  margin-bottom: 2%;
 }
 #him {
   width: 40%;
