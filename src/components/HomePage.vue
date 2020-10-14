@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <Header v-if="isOnHomePage()"></Header>
-    <h1 align="center">ZangeApp</h1>
+    <h1 align="center" v-if="isOnHomePage()">ZangeApp</h1>
     <v-row>
         <v-col align="center">
           <v-btn @click="makeChatroom" v-if="isOnHomePage()"

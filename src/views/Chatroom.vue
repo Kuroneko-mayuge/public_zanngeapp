@@ -1,9 +1,5 @@
 <template>
   <div>
-    <div class="header">
-      <a href="/">退出する</a>
-    </div>
-
     <!-- チャット部分 -->
     <div class="chat">
       <div v-for="comment in comments" :key="comment.id">
@@ -12,7 +8,7 @@
       </div>
     </div>
 
-    <Review v-if="diffTime < 0"></Review>
+    <Review v-if="diffTime < 0" class="review_box"></Review>
 
     <!-- コメント送信部分 -->
     <div class="input_container">
@@ -24,7 +20,6 @@
         <button type="submit">Send</button>
       </form>
     </div>
-
   </div>
 </template>
 
@@ -97,7 +92,16 @@ export default {
 .header {
   position: fixed;
   top: 1%;
-  
+}
+
+.review_box {
+  position: fixed;
+  width: 50%;
+  padding: 3%;
+  top: 50%;
+  margin-left: 20%;
+  background: #FFEEFF;
+  text-align: center;
 }
 
 .chat {
@@ -112,15 +116,16 @@ export default {
 
 #mine {
   width: 40%;
-  height: 2%;
+  height: 1%;
   margin-right: auto;
-  padding: 2% 15% 2% 1%;
+  padding: 1% 15% 1% 1%;
   margin-bottom: 2%;
 }
 #him {
   width: 40%;
   margin-left: auto;
-  padding: 2% 15% 2% 1%;
+  padding: 1% 15% 1% 1%;
+  margin-bottom: 2%;
 }
 
 /* チャット入力欄 */

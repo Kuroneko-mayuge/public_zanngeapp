@@ -1,16 +1,17 @@
 <template>
-  <v-container>
+  <div>
+    <p id="message">Are You Satisfied?</p>
     <star-rate
     v-model="value"
     type="heart"
     active-color="#d4237a"
     :hover-change="true">
     </star-rate>
-  
+    <br>
     <v-btn @click="review"
     color="#191970" class="white--text">評価して終了</v-btn>
     <div class="heart"></div>
-  </v-container>
+  </div>
 </template>
 
 <script>
@@ -77,3 +78,12 @@ export default {
   }
 }
 </script>
+
+<style>
+#message{
+  font-family: cursive;
+  color: brown;
+  font-size: 21px;
+}
+
+</style>
