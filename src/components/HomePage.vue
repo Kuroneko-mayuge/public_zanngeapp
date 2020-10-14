@@ -1,6 +1,7 @@
 <template>
   <v-container>
     <Header v-if="isOnHomePage()"></Header>
+    <Description class="description"></Description>
     <h1 align="center" v-if="isOnHomePage()">ZangeApp</h1>
     <v-row>
         <v-col align="center">
@@ -16,7 +17,7 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col align="center">
+      <v-col align="center" id="home_name">
         <span v-if="isOnHomePage()" class="title">ようこそ！ {{userName}} さん</span>
       </v-col>
     </v-row>
@@ -38,6 +39,7 @@ import common from '@/common.js'
 import firebase from 'firebase'
 import Loading from '@/components/Loading'
 import Header from '@/components/Header'
+import Description from '@/components/Description'
 import { mapActions } from 'vuex'
 import { mapGetters } from 'vuex'
 export default {  
@@ -51,7 +53,8 @@ export default {
   },
   components: {
     Loading,
-    Header
+    Header,
+    Description
   },
   methods: {
     ...mapActions(['setHostFlg']),
@@ -152,6 +155,15 @@ export default {
 }
 h1 {
   font-family: "HGP行書体";
-  font-size: 400%;
+  font-size: 300%;
+  margin: 5%;
+}
+.description {
+  position: fixed;
+  top: 2%;
+}
+
+#home_name {
+  margin-top: 5%;
 }
 </style>
