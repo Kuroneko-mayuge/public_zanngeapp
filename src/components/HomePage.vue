@@ -161,6 +161,8 @@ h1 {
 .description {
   position: fixed;
   top: 2%;
+  width: 95%;
+  height: 90%;
 }
 
 #home_name {
