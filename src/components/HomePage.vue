@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <Header v-if="isOnHomePage()"></Header>
-    <Description class="description"></Description>
+    <Description v-if="isOnHomePage()" class="description"></Description>
     <h1 align="center" v-if="isOnHomePage()">ZangeApp</h1>
     <v-row>
         <v-col align="center">
@@ -161,7 +161,7 @@ h1 {
 .description {
   position: fixed;
   top: 2%;
-  width: 95%;
+  width: 80%;
   height: 90%;
 }
 

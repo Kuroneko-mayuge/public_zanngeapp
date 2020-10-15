@@ -1,7 +1,7 @@
 <template>
   <div>
     <a @click="viewDescription" class="des_title">ZangeAppとは</a>
-    
+
     <div class="des_container" v-if="des_view">
       <h3>ZangeAppとは</h3>
       <h4>
@@ -45,8 +45,8 @@ a:hover{
 .des_container{
   background-color: gray;
   color:aliceblue;
-  width: 75%;
-  margin-left: auto;
+  width: 80%;
+  margin-left: 18%;
   margin-right: auto;
   height: 98%;
   text-align: center;
