@@ -31,7 +31,6 @@
 
 <script>
 import common from '@/common.js'
-import firebase from 'firebase'
 import Loading from '@/components/Loading'
 import Header from '@/components/Header'
 import Description from '@/components/Description'
@@ -105,7 +104,6 @@ export default {
     },
     visitChatroom: function(){
       this.loading = true;
-      const roomRef =  firebase.firestore().collection('chatroom');
       let roomid = "";
       async function delay(ms){
         return await new Promise(resolve => setTimeout(resolve,ms));
@@ -114,7 +112,7 @@ export default {
       let match = async() => {
         await delay(1000);
       //名前順に並び替えて1つのチャットルームIDを取得＆マッチング処理
-        roomRef.where("status", "==", "pending")
+        this.$db.where("status", "==", "pending")
         .orderBy('roomID')
         .limit(1)
         .get()
@@ -123,7 +121,7 @@ export default {
             if (catchdata) {
               roomid = catchdata.data().roomID
               //取得したチャットルームのメンバーに追加
-              roomRef.doc(roomid).update({
+              this.$db.doc(roomid).update({
                 "member.visitor": this.uid,
                 status: "useing"
               });
@@ -153,11 +151,13 @@ h1 {
   font-size: 300%;
   margin: 5%;
 }
+
 .description {
   position: fixed;
   top: 2%;
-  width: 80%;
+  width: 20%;
   height: 90%;
+  z-index: 1;
 }
 
 #home_name {

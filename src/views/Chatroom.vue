@@ -98,7 +98,7 @@ export default {
   width: 50%;
   padding: 3%;
   top: 50%;
-  margin-left: 20%;
+  margin-left: 19%;
   background: #FFEEFF;
   text-align: center;
 }
@@ -148,7 +148,4 @@ export default {
   font-size: 1em;          /* 文字サイズ */
   line-height: 1.5;        /* 行の高さ */
 }
-
-/* チャットコメント部分 */
-
 </style>
