@@ -50,7 +50,6 @@ a:hover{
   margin-right: auto;
   height: 98%;
   text-align: center;
-  z-index: 1;
 }
 
 </style>

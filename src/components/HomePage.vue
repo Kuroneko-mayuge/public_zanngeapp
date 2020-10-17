@@ -17,11 +17,6 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col align="center" id="home_name">
-        <span v-if="isOnHomePage()" class="title">ようこそ！ {{userName}} さん</span>
-      </v-col>
-    </v-row>
-    <v-row>
       <v-col align="center">
         <span v-if="isOnHomePage()">
           <span class="heart">❤︎</span>
@@ -49,7 +44,7 @@ export default {
     trycount: 10,
   }),
   computed: {
-    ...mapGetters(['userName', 'uid','userReviewVal'])
+    ...mapGetters(['uid','userReviewVal'])
   },
   components: {
     Loading,

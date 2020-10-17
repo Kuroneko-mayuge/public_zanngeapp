@@ -15,8 +15,7 @@
       <form action="" @submit.prevent="doSend">
         <textarea
           v-model="input"
-          class="textlines"
-          @keydown.enter.exact.prevent="doSend"></textarea>
+          class="textlines"></textarea>
         <button type="submit">Send</button>
       </form>
     </div>
@@ -105,6 +104,8 @@ export default {
 }
 
 .chat {
+  position: fixed;
+  top: 5%;
   margin: 1% 3%;
   width: 95%;
   font-size: 15px;
@@ -115,15 +116,16 @@ export default {
 }
 
 #mine {
-  width: 40%;
+  width: 45%;
   height: 1%;
-  margin-right: auto;
+  margin-right: 5%;
   padding: 1% 15% 1% 1%;
   margin-bottom: 2%;
 }
 #him {
-  width: 40%;
+  width: 45%;
   margin-left: auto;
+  margin-right: 5%;
   padding: 1% 15% 1% 1%;
   margin-bottom: 2%;
 }
@@ -144,7 +146,7 @@ export default {
   width: 70%;             /* 横幅 */
   height: 80%;           /* 高さ */
   font-size: 1em;          /* 文字サイズ */
-  line-height: 1.2;        /* 行の高さ */
+  line-height: 1.5;        /* 行の高さ */
 }
 
 /* チャットコメント部分 */
