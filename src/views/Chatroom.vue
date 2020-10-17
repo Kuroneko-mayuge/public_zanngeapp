@@ -63,7 +63,7 @@ export default {
     //終了時刻を取得
     this.$db.doc(roomid).get()
     .then((doc) => {
-      _this.reviewTime = Date.parse([doc.data().finishTime].replace(/-/g,"/"));
+      _this.reviewTime = Date.parse((doc.data().finishTime).replace(/-/g, "/"));
     });
     //終了時刻から現在時刻を１秒毎に引く
     if (_this.diffTime >= 0){
