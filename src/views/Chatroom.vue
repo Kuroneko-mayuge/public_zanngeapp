@@ -95,7 +95,7 @@ export default {
 
 .review_box {
   position: fixed;
-  width: 50%;
+  width: 60%;
   padding: 3%;
   top: 50%;
   margin-left: 19%;

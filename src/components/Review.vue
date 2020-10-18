@@ -9,7 +9,7 @@
     </star-rate>
     <br>
     <v-btn @click="review"
-    color="#191970" class="white--text">相手を評価して終わる</v-btn>
+    color="#191970" class="white--text">相手を評価して終了</v-btn>
     <div class="heart"></div>
   </div>
 </template>
