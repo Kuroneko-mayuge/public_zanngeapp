@@ -2,7 +2,7 @@
   <v-container>
     <Header v-if="isOnHomePage()"></Header>
     <Description v-if="isOnHomePage()" class="description"></Description>
-    <h1 align="center" v-if="isOnHomePage()">ZangeApp</h1>
+    <h1 align="center" v-if="isOnHomePage()">Zan-ge!</h1>
     <v-row>
         <v-col align="center">
           <v-btn @click="makeChatroom" v-if="isOnHomePage()"
@@ -150,6 +150,7 @@ h1 {
   font-family: "HGP行書体";
   font-size: 300%;
   margin: 5%;
+  color: #2a6f8f;
 }
 
 .description {
