@@ -1,11 +1,13 @@
 <template>
   <div>
+    <span class="lasttimebox">{{ computeLasttime }}</span>
     <!-- チャット部分 -->
-    <div class="chat">
+    <div id="chat">
       <div v-for="comment in comments" :key="comment.id">
         <v-card color="#E3F2FD" v-if="comment.userID === uid" id="mine">{{ comment.text }}</v-card>
         <v-card v-else id="him">{{ comment.text }}</v-card>
       </div>
+      
     </div>
 
     <Review v-if="diffTime < 0" class="review_box"></Review>
@@ -34,7 +36,20 @@ export default {
     diffTime: "",
   }),
   computed: {
-    ...mapGetters(['uid'])
+  ...mapGetters(['uid']),
+  computeLasttime:function(){
+    if(this.diffTime > 0){
+      const hour = Math.floor(this.diffTime / 3600000);
+      const minute = Math.floor((this.diffTime  - 3600000 * hour) / 60000);
+      const mm = ('00' + minute).slice(-2);
+      const ms = ('00000' + (this.diffTime  % 60000)).slice(-5);
+      const time = `${mm}:${ms.slice(0,2)}`;
+      return time;
+      }
+    else{
+      return null;
+      }
+    }
   },
   components: {
     Review
@@ -50,6 +65,10 @@ export default {
         const newItem = { ID:keyid, userID:this.uid, text:this.input, createdAt:createdTime };
         messageRef.add(newItem);
         this.input = "";
+
+        //スクロールを一番下に移動
+        const element = document.getElementById("chat");
+        element.scrollTop = element.scrollHeight - element.clientHeight;
       }
     },
     //終了時刻と現在時刻の比較
@@ -89,9 +108,10 @@ export default {
 </script>
 
 <style>
-.header {
+.lasttimebox {
   position: fixed;
   top: 1%;
+  margin-bottom: 0%;
 }
 
 .review_box {
@@ -104,16 +124,13 @@ export default {
   text-align: center;
 }
 
-.chat {
+#chat {
   position: fixed;
   top: 5%;
-  margin: 1% 3%;
-  width: 95%;
+  width: 100%;
+  height: 500px;
   font-size: 15px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  overflow: auto;
+  overflow: scroll;
 }
 
 #mine {
