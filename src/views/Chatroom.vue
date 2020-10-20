@@ -11,7 +11,7 @@
     <Review v-if="diffTime < 0" class="review_box"></Review>
 
     <!-- コメント送信部分 -->
-    <div class="input_container">
+    <div class="input_container" v-if="diffTime > 0">
       <form action="" @submit.prevent="doSend">
         <textarea
           v-model="input"
@@ -52,6 +52,7 @@ export default {
         this.input = "";
       }
     },
+    //終了時刻と現在時刻の比較
     checkTime(){
       const nowTime = new Date().getTime();
       this.diffTime = this.reviewTime - nowTime;

@@ -63,7 +63,7 @@ export default {
       const roomid = Math.random().toString(34).substring(4); 
       //終了時刻を設定
       let targetTime = new Date();
-      targetTime.setMinutes(targetTime.getMinutes() + 0.5); //1分後に終了
+      targetTime.setMinutes(targetTime.getMinutes() + 1); //1分後に終了
       targetTime = common.getStringFromDate(targetTime); //firestoreに文字列で日付を登録する
 
       //firestoreにチャットルームを登録
