@@ -16,7 +16,7 @@ const routes = [
       const nextDoc = firebase.firestore().collection('chatroom').doc(to.params.roomID);
       nextDoc.get()
       .then((doc) => {
-        const checkdata = (doc.data().member.visitor);
+        const checkdata = (doc.data().member.visitor); 
         if(store.getters.hostFlg) {
           next()
         }

@@ -48,7 +48,7 @@ export default {
   components: {
     Loading,
     Header,
-    Description
+    Description,
   },
   methods: {
     ...mapActions(['setHostFlg']),
@@ -143,6 +143,10 @@ export default {
 </script>
 
 <style>
+body{
+  background-color: bisque;
+}
+
 .heart {
   color: red;
 }

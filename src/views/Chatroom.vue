@@ -7,7 +7,6 @@
         <v-card color="#E3F2FD" v-if="comment.userID === uid" id="mine">{{ comment.text }}</v-card>
         <v-card v-else id="him">{{ comment.text }}</v-card>
       </div>
-      
     </div>
 
     <Review v-if="diffTime < 0" class="review_box"></Review>
@@ -128,7 +127,7 @@ export default {
   position: fixed;
   top: 5%;
   width: 100%;
-  height: 500px;
+  height: 450px;
   font-size: 15px;
   overflow: scroll;
 }

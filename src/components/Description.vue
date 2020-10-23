@@ -2,13 +2,14 @@
   <div>
     <a @click="viewDescription" class="des_title">このアプリは？</a>
     <div class="des_container" v-if="des_view">
-      <h2>Zan-ge!とは</h2>
-      <h4 class="first-des">
+      <h2>Zan-ge!</h2>
+      <h4>
+        <br>
         <p>「誰でもいいから聞いて欲しい」</p>
         <p>「誰の話でもいいから聞いてみたい」</p>
         <p>を繋げるためのアプリです</p>
       </h4>
-      <h4 class="first-des">
+      <h4>
         <p>常に1対1の、リアルタイムな、</p>
         <p>匿名性のコミュニケーションです</p>
         <br>
@@ -16,17 +17,25 @@
         <p>最後にあなたは相手を評価できます（勿論相手も同じです）</p>
         <p>ログインする事で、あなたの信頼性を確認する事が可能です</p>
       </h4>      
-      <h4 class="first-des">
+      <h4>
         <p>神父になる場合、</p>
         <p>どんな話でも、相手をなるべく受け容れてください</p>
         <p>人は誰でも過ちを犯します</p>
       </h4>
-      <h4 class="first-des">
+      <h4>
         <p>懺悔をする場合、</p>
         <p>どんな事を話しても問題ありません</p>
         <p>「嘘をついてしまった」「仕事でミスをした」「浮気をした」</p>
         <p>ただ誰かと話したいだけでも結構です</p>
       </h4>
+      <h5>
+        <p>※このアプリは開発中です。</p>
+        <p>他の様々な機能を考えていますが、</p>
+        <p>開発者のやる気次第で実装します。</p>
+        <p>このアプリであなたに起きた全ての不都合について</p>
+        <p>私が責任を負うことはできかねます。</p>
+        <p>ご意見はこちらまで：TsuruRoll20201004@gmail.com</p>
+      </h5>
       <div>
         <v-btn color="white" @click="viewDescription">閉じる</v-btn>
       </div>
@@ -75,9 +84,14 @@ a:hover{
 }
 
 h4{
-  margin-top: 7%;
+  margin: 2% 8% 2% 6%;
+  padding: 1% 1% 1% 1%;
   font-size: 13px;
-  margin-bottom: 3%;
+}
+h5{
+  margin: 2% 8% 2% 6%;
+  padding: 1% 1% 1% 1%;
+  font-size: 11px;
 }
 
 </style>
