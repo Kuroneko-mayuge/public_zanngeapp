@@ -10,7 +10,8 @@ export default new Vuex.Store({
     host_flg: false,
     login_reviewVal: null,
     login_flg: false,
-    loading_flg: false
+    loading_flg: false,
+    boardText: "abab"
   },
   mutations: {
     setLoginUser (state, user) {
@@ -41,6 +42,9 @@ export default new Vuex.Store({
     },
     setloadingFlg (state, isBtn) {
       state.loading_flg = isBtn
+    },
+    setboardText(state, boardDate){
+      state.boardText = boardDate;
     }
   },
   actions: {
@@ -63,16 +67,28 @@ export default new Vuex.Store({
     },
     setloadingFlg ({ commit }, isBtn) {
       commit('setloadingFlg', isBtn)
+    },
+    setboardText_action({ commit }){
+      const boarddb = firebase.firestore().collection('board');
+      const getbordDate = []
+      boarddb.get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach(function(doc){
+          const catchdata = doc.data();
+          getbordDate.push(catchdata);
+          commit('setboardText', getbordDate);
+        });
+      })
     }
   },
   modules: {
   },
   getters: {
-    userName: state => state.login_user ? state.login_user.displayName : '名無し',
     photoURL: state => state.login_user ? state.login_user.photoURL : '',
     uid: state => state.login_user ? state.login_user.uid: Math.random().toString(34).substring(4),
     hostFlg: state => state.host_flg,
     userReviewVal: state => state.login_reviewVal,
-    loadingFlg: state => state.loading_flg
+    loadingFlg: state => state.loading_flg,
+    boardText: state => state.boardText
   }
 })
