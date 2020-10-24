@@ -77,7 +77,7 @@ a:hover{
   color:aliceblue;
   width: 380%;
   margin-left: 30%;
-  height: 98%;
+  height: 45%;
   text-align: center;
   opacity: 0.92;
   overflow: scroll;
