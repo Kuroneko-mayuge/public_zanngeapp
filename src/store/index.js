@@ -11,7 +11,7 @@ export default new Vuex.Store({
     login_reviewVal: null,
     login_flg: false,
     loading_flg: false,
-    boardText: "abab"
+    boardText: null
   },
   mutations: {
     setLoginUser (state, user) {

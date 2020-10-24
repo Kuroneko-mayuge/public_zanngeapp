@@ -1,26 +1,28 @@
 <template>
   <div>
     掲示板
-    {{ boardTexts.text }}
+    <br>
+    <button @click="update">更新</button>
+    <br>
+    <div v-for="boardtext in boardText" :key="boardtext.id">
+    {{ boardtext.time }}:{{ boardtext.text }}
+    </div>
   </div>
 </template>
 
 <script>
-import firebase from 'firebase'
+import { mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 export default {
   name: 'Board',
-  data: () => ({
-    boardTexts: []
-  }),
-  created: function(){
-    const boarddb = firebase.firestore().collection('board');
-    const _this = this;
-    boarddb.get()
-    .then((querySnapshot) => {
-     querySnapshot.forEach(function(doc){
-        const catchdata = doc.data();
-        _this.boardTexts.push(catchdata);
-    })})
+  computed: {
+    ...mapGetters(['boardText'])
+  },
+  methods:{
+    ...mapActions(['setboardText_action']),
+    update: function(){
+      this.setboardText_action();
+    }
   }
 }
 </script>
