@@ -1,6 +1,5 @@
 <template class="backgroud">
   <v-app>
-  <img src="@/assets/demo1.png">
     <HomePage/>
   </v-app>
 </template>
@@ -14,11 +13,3 @@ export default {
   },
 }
 </script>
-
-<style>
-
-.backgroud{
-  background-color: yellow;
-}
-
-</style>
