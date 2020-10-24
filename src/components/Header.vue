@@ -1,22 +1,14 @@
 <template>
   <header>
-    <div v-if="photoURL" class="pos-right">
-      <v-menu offset-y>
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn light icon v-bind="attrs" v-on="on">
-            <img v-if="photoURL" :src="photoURL">
-          </v-btn>
-        </template>
-        <v-list>
-          <v-list-item>
-            <v-btn @click="logout">
-              <v-list-item-title>ログアウト</v-list-item-title>
-            </v-btn>
-          </v-list-item>
-        </v-list>
-      </v-menu>
+    <div v-if="photoURL" class="flex">
+      <span>
+        <img :src="photoURL">
+      </span>
+      <span class="margin">
+        <v-btn color="#191970" class="white--text" @click="logout">ログアウト</v-btn>
+      </span>
     </div>
-    <div v-else-if="loadingFlg" align="right" >
+    <div v-else-if="loadingFlg" align="right">
       <v-btn color="#191970" class="white--text" @click="login">ログイン</v-btn>
     </div>
     <div v-else class="pos-right">
@@ -68,11 +60,30 @@ img {
     width: 32px;
     z-index: 0;
 }
-.pos-right{
+.pos-right {
+    float: right;
+    height: 32px;
+    width: 32px;
+}
+.pos-right-btn {
     position:absolute;
-    right:10px;
+    right:80px;
     top:10px;
     height: 32px;
     width: 32px;
+}
+
+.line-up {
+  float: left;
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.margin {
+  margin-left: 1%;
 }
 </style>
