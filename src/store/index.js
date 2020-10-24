@@ -10,7 +10,7 @@ export default new Vuex.Store({
     host_flg: false,
     login_reviewVal: null,
     login_flg: false,
-    display_btn_flg: false
+    loading_flg: false
   },
   mutations: {
     setLoginUser (state, user) {
@@ -39,8 +39,8 @@ export default new Vuex.Store({
     setLoginFlg (state, isLogin) {
       state.login_flg = isLogin
     },
-    setDisplayBtnFlg (state, isBtn) {
-      state.display_btn_flg = isBtn
+    setloadingFlg (state, isBtn) {
+      state.loading_flg = isBtn
     }
   },
   actions: {
@@ -53,7 +53,7 @@ export default new Vuex.Store({
     },
     logout ({ commit }) {
       firebase.auth().signOut()
-      commit('setDisplayBtnFlg', true)
+      commit('setloadingFlg', true)
     },
     deleteLoginUser ({ commit }) {
       commit('deleteLoginUser')
@@ -61,8 +61,8 @@ export default new Vuex.Store({
     setHostFlg ({ commit }, isHost) {
       commit('setHostFlg', isHost)
     },
-    setDisplayBtnFlg ({ commit }, isBtn) {
-      commit('setDisplayBtnFlg', isBtn)
+    setloadingFlg ({ commit }, isBtn) {
+      commit('setloadingFlg', isBtn)
     }
   },
   modules: {
@@ -73,6 +73,6 @@ export default new Vuex.Store({
     uid: state => state.login_user ? state.login_user.uid: Math.random().toString(34).substring(4),
     hostFlg: state => state.host_flg,
     userReviewVal: state => state.login_reviewVal,
-    displayBtnFlg: state => state.display_btn_flg
+    loadingFlg: state => state.loading_flg
   }
 })

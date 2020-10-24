@@ -1,12 +1,25 @@
 <template>
   <header>
-    <div v-if="photoURL" align="right">
-      <img v-if="photoURL" :src="photoURL" @click="logout">
+    <div v-if="photoURL" class="pos-right">
+      <v-menu offset-y>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn light icon v-bind="attrs" v-on="on">
+            <img v-if="photoURL" :src="photoURL">
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item>
+            <v-btn @click="logout">
+              <v-list-item-title>ログアウト</v-list-item-title>
+            </v-btn>
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </div>
-    <div v-else-if="displayBtnFlg" align="right">
+    <div v-else-if="loadingFlg" align="right" >
       <v-btn color="#191970" class="white--text" @click="login">ログイン</v-btn>
     </div>
-    <div v-else class="loading">
+    <div v-else class="pos-right">
       <Loading/>
     </div>
   </header>
@@ -22,10 +35,10 @@ export default {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.setLoginUser(user)
-        this.setDisplayBtnFlg(false)
+        this.setloadingFlg(false)
       } else {
         this.deleteLoginUser()
-        this.setDisplayBtnFlg(true)
+        this.setloadingFlg(true)
       }
     })
   },
@@ -33,10 +46,10 @@ export default {
     Loading
   },
   methods: {
-    ...mapActions(['login','setLoginUser', 'logout', 'deleteLoginUser','setDisplayBtnFlg'])
+    ...mapActions(['login','setLoginUser', 'logout', 'deleteLoginUser','setloadingFlg'])
   },
   computed: {
-    ...mapGetters(['photoURL','displayBtnFlg'])
+    ...mapGetters(['photoURL','loadingFlg'])
   }
 }
 </script>
@@ -55,7 +68,7 @@ img {
     width: 32px;
     z-index: 0;
 }
-.loading{
+.pos-right{
     position:absolute;
     right:10px;
     top:10px;
