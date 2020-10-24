@@ -1,8 +1,10 @@
 <template>
-  <v-container>
+  <div id="newcontainer">
     <Header v-if="isOnHomePage()"></Header>
     <Description v-if="isOnHomePage()" class="description"></Description>
     <h1 align="center" v-if="isOnHomePage()">Zan-ge!</h1>
+    <br>
+    <br>
     <v-row>
         <v-col align="center">
           <v-btn @click="makeChatroom" v-if="isOnHomePage()"
@@ -29,7 +31,7 @@
     </v-row>
     <Loading v-show="loading"></Loading>
     <router-view></router-view>
-  </v-container>
+  </div>
 </template>
 
 <script>
@@ -146,6 +148,13 @@ export default {
 </script>
 
 <style>
+#newcontainer {
+  padding: 1%;
+  margin: 1%;
+  width: 100%;
+  height: 100%;
+}
+
 .heart {
   color: red;
 }
@@ -159,7 +168,7 @@ h1 {
 .description {
   position: fixed;
   top: 2%;
-  width: 20%;
+  width: 25%;
   height: 200%;
   z-index: 1;
 }

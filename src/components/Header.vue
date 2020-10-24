@@ -5,11 +5,11 @@
         <img :src="photoURL">
       </span>
       <span class="margin">
-        <v-btn color="#191970" class="white--text" @click="logout">ログアウト</v-btn>
+        <v-btn color="#191970" class="white--text" @click="logout" small>ログアウト</v-btn>
       </span>
     </div>
-    <div v-else-if="loadingFlg" align="right">
-      <v-btn color="#191970" class="white--text" @click="login">ログイン</v-btn>
+    <div v-else-if="loadingFlg" align="right" class="margin">
+      <v-btn color="#191970" class="white--text" @click="login" small>ログイン</v-btn>
     </div>
     <div v-else class="pos-right">
       <Loading/>
@@ -56,8 +56,8 @@ img {
     display: block;
     margin: 0;
     position: relative;
-    height: 32px;
-    width: 32px;
+    height: 30px;
+    width: 30px;
     z-index: 0;
 }
 .pos-right {
@@ -85,5 +85,6 @@ img {
 
 .margin {
   margin-left: 1%;
+  margin-right: 1%;
 }
 </style>

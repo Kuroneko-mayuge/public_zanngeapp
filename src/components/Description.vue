@@ -14,7 +14,8 @@
         <p>匿名性のコミュニケーションです</p>
         <br>
         <p>5分が経つと、強制的に会話は終了します</p>
-        <p>最後にあなたは相手を評価できます（勿論相手も同じです）</p>
+        <p>最後にあなたは相手を評価できます</p>
+        <p>（勿論相手も同じです）</p>
         <p>ログインする事で、あなたの信頼性を確認する事が可能です</p>
       </h4>      
       <h4>
@@ -67,16 +68,16 @@ a:hover{
 }
 
 .des_title {
-  width: 200%;
+  width: 250%;
   height: 10%;
-  font-size: 15px;
+  font-size: 12px;
 }
 
 .des_container{
   background-color: #5b5b6b;
   color:aliceblue;
   width: 380%;
-  margin-left: 30%;
+  margin-left: 0%;
   height: 45%;
   text-align: center;
   opacity: 0.92;
@@ -86,7 +87,7 @@ a:hover{
 h4{
   margin: 2% 8% 2% 6%;
   padding: 1% 1% 1% 1%;
-  font-size: 13px;
+  font-size: 12px;
 }
 h5{
   margin: 2% 8% 2% 6%;

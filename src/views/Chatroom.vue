@@ -67,7 +67,7 @@ export default {
 
         //スクロールを一番下に移動
         const element = document.getElementById("chat");
-        element.scrollTop = element.scrollHeight - element.clientHeight;
+        element.scrollTop = element.scrollHeight - element.clientHeight - 10;
       }
     },
     //終了時刻と現在時刻の比較
@@ -118,18 +118,17 @@ export default {
   width: 60%;
   padding: 3%;
   top: 50%;
-  margin-left: 13%;
+  margin-left: 16.5%;
   background: #FFEEFF;
   text-align: center;
 }
 
 #chat {
+  height: 78%;
   position: fixed;
   top: 5%;
-  width: 110%;
-  height: 200%;
-  margin-left: -2%;
-  height: 450px;
+  width: 100%;
+  margin-left: 1%;
   font-size: 15px;
   overflow: scroll;
   white-space:normal;
@@ -140,7 +139,7 @@ export default {
   height: 1%;
   margin-right: 5%;
   padding: 1% 15% 1% 1%;
-  margin-bottom: 2%;
+  margin-bottom: 1%;
   white-space: pre-wrap;
 }
 #him {
@@ -157,7 +156,7 @@ export default {
   position: fixed;
   bottom: 5%;
   width: 100%;
-  margin: 0;
+  margin-left: 5%;
 }
 
 .textlines {
