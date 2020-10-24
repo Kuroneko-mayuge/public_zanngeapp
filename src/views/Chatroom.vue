@@ -118,7 +118,7 @@ export default {
   width: 60%;
   padding: 3%;
   top: 50%;
-  margin-left: 19%;
+  margin-left: 13%;
   background: #FFEEFF;
   text-align: center;
 }
@@ -126,10 +126,13 @@ export default {
 #chat {
   position: fixed;
   top: 5%;
-  width: 100%;
+  width: 110%;
+  height: 200%;
+  margin-left: -2%;
   height: 450px;
   font-size: 15px;
   overflow: scroll;
+  white-space:normal;
 }
 
 #mine {
@@ -138,13 +141,15 @@ export default {
   margin-right: 5%;
   padding: 1% 15% 1% 1%;
   margin-bottom: 2%;
+  white-space: pre-wrap;
 }
 #him {
   width: 45%;
-  margin-left: auto;
+  margin-left: 48%;
   margin-right: 5%;
-  padding: 1% 15% 1% 1%;
+  padding: 1% 10% 1% 1%;
   margin-bottom: 2%;
+  white-space: pre-wrap;
 }
 
 /* チャット入力欄 */

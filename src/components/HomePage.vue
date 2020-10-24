@@ -143,10 +143,6 @@ export default {
 </script>
 
 <style>
-body{
-  background-color: bisque;
-}
-
 .heart {
   color: red;
 }
