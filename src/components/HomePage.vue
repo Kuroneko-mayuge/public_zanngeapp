@@ -18,10 +18,13 @@
     </v-row>
     <v-row>
       <v-col align="center">
-        <span v-if="isOnHomePage()">
-          <span class="heart">❤︎</span>
-        {{ userReviewVal }}
-        </span>
+        <div v-if="!loadingFlg && !photoURL" class="loading">
+          <Loading/>
+        </div>
+        <div v-else-if="isOnHomePage()">
+            <span class="heart">❤︎</span>
+          {{ userReviewVal }}
+        </div>
       </v-col>
     </v-row>
     <Loading v-show="loading"></Loading>
@@ -43,7 +46,7 @@ export default {
     trycount: 10,
   }),
   computed: {
-    ...mapGetters(['uid','userReviewVal'])
+    ...mapGetters(['uid','userReviewVal','loadingFlg','photoURL'])
   },
   components: {
     Loading,
@@ -160,4 +163,10 @@ h1 {
   height: 200%;
   z-index: 1;
 }
+
+.loading {
+  height: 32px; 
+  width: 32px
+}
+
 </style>
