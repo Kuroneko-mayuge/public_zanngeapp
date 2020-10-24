@@ -8,7 +8,9 @@ export default new Vuex.Store({
   state: {
     login_user: null,
     host_flg: false,
-    login_reviewVal: null
+    login_reviewVal: null,
+    login_flg: false,
+    display_btn_flg: false
   },
   mutations: {
     setLoginUser (state, user) {
@@ -33,6 +35,12 @@ export default new Vuex.Store({
     },
     setHostFlg (state, isHost) {
       state.host_flg = isHost
+    },
+    setLoginFlg (state, isLogin) {
+      state.login_flg = isLogin
+    },
+    setDisplayBtnFlg (state, isBtn) {
+      state.display_btn_flg = isBtn
     }
   },
   actions: {
@@ -43,14 +51,18 @@ export default new Vuex.Store({
     setLoginUser ({ commit }, user) {
       commit('setLoginUser', user)
     },
-    logout () {
+    logout ({ commit }) {
       firebase.auth().signOut()
+      commit('setDisplayBtnFlg', true)
     },
     deleteLoginUser ({ commit }) {
       commit('deleteLoginUser')
     },
     setHostFlg ({ commit }, isHost) {
       commit('setHostFlg', isHost)
+    },
+    setDisplayBtnFlg ({ commit }, isBtn) {
+      commit('setDisplayBtnFlg', isBtn)
     }
   },
   modules: {
@@ -60,6 +72,7 @@ export default new Vuex.Store({
     photoURL: state => state.login_user ? state.login_user.photoURL : '',
     uid: state => state.login_user ? state.login_user.uid: Math.random().toString(34).substring(4),
     hostFlg: state => state.host_flg,
-    userReviewVal: state => state.login_reviewVal
+    userReviewVal: state => state.login_reviewVal,
+    displayBtnFlg: state => state.display_btn_flg
   }
 })
