@@ -157,11 +157,7 @@ h1 {
   position: fixed;
   top: 2%;
   width: 20%;
-  height: 90%;
+  height: 200%;
   z-index: 1;
-}
-
-#home_name {
-  margin-top: 5%;
 }
 </style>
