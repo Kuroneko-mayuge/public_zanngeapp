@@ -1,4 +1,4 @@
-<template>
+<template class="backgroud">
   <v-app>
     <HomePage/>
   </v-app>
