@@ -126,10 +126,9 @@ export default {
   top:1%;
   width:100%;
   height:5%;
-  font-size: 12px;
+  font-size: 12.5px;
   display: flex;
   justify-content:space-between;
-  margin-bottom: 1.5%;
 }
 .exit {
   width:20%;
@@ -158,7 +157,7 @@ export default {
 #chat {
   height: 78%;
   position: fixed;
-  top: 5%;
+  top: 6%;
   width: 100%;
   margin-left: 1%;
   font-size: 15px;
@@ -179,7 +178,7 @@ export default {
   margin-left: 48%;
   margin-right: 2%;
   padding: 1% 10% 1% 1%;
-  margin-bottom: 2%;
+  margin-bottom: 1%;
   white-space: pre-wrap;
 }
 
