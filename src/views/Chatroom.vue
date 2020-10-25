@@ -1,6 +1,9 @@
 <template>
   <div>
-    <span class="lasttimebox">{{ computeLasttime }}</span>
+    <div class="chatbox">
+      <a href="#" class="exit" @click="toHome">退出する</a>
+      <div class="lasttimebox">{{ computeLasttime }}</div>
+    </div>
     <!-- チャット部分 -->
     <div id="chat">
       <div v-for="comment in comments" :key="comment.id">
@@ -54,6 +57,17 @@ export default {
     Review
   },
   methods: {
+    toHome(){
+      const result = confirm("本当に退出しますか？相手に失礼はありませんか？");
+      if(result){
+        const roomid = this.$route.params.roomID;
+        const messageRef = this.$db.doc(roomid).collection('messages');
+        const keyid = Math.floor( Math.random() * (999999 + 1 - 1) ) + 1; //forループのための便宜的なkeyid
+        const createdTime = new Date();
+        const newItem = { ID:keyid, userID:this.uid, text:"~~退出しました~~", createdAt:createdTime };
+        messageRef.add(newItem).then(()=>{location.href="/"});
+      }
+    },
     //チャット送信処理
     doSend(){
       if (this.input !== ""){
@@ -107,10 +121,28 @@ export default {
 </script>
 
 <style>
-.lasttimebox {
+.chatbox {
   position: fixed;
-  top: 1%;
-  margin-bottom: 0%;
+  top:1%;
+  width:100%;
+  height:5%;
+  font-size: 12px;
+  display: flex;
+  justify-content:space-between;
+  margin-bottom: 1.5%;
+}
+.exit {
+  width:20%;
+  height: 90%;
+  margin: 1%;
+}
+.chatbox a:hover{
+  text-decoration: underline;
+}
+
+.lasttimebox {
+  margin: 1%;
+  margin-right: 2%;
 }
 
 .review_box {

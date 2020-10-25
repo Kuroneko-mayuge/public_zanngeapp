@@ -48,22 +48,22 @@ export default {
 
 <style>
 img {
-    -webkit-background-size: 32px 32px;
-    background-size: 32px 32px;
-    border: 0;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-    display: block;
-    margin: 0;
-    position: relative;
-    height: 30px;
-    width: 30px;
-    z-index: 0;
+  -webkit-background-size: 32px 32px;
+  background-size: 32px 32px;
+  border: 0;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  display: block;
+  margin: 0;
+  position: relative;
+  height: 30px;
+  width: 30px;
+  z-index: 0;
 }
 .pos-right {
   float: right;
-  height: 3%;
-  width: 3%;
+  height: 4%;
+  width: 4%;
   margin-right: 1.5%;
 }
 

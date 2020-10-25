@@ -73,7 +73,7 @@ export default {
       const roomid = Math.random().toString(34).substring(4); 
       //終了時刻を設定
       let targetTime = new Date();
-      targetTime.setMinutes(targetTime.getMinutes() + 5); //1分後に終了
+      targetTime.setMinutes(targetTime.getMinutes() + 5); //5分後に終了
       targetTime = common.getStringFromDate(targetTime); //firestoreに文字列で日付を登録する
 
       //firestoreにチャットルームを登録
@@ -181,8 +181,8 @@ h1 {
 }
 
 .heart_loading {
-  height: 3%; 
-  width: 3%;
+  height: 5%; 
+  width: 5%;
 }
 .main_loading {
   height: 20%; 
@@ -190,8 +190,8 @@ h1 {
 }
 
 #chapel img {
-  width: 18%;
-  height: 18%;
+  width: 20%;
+  height: 20%;
   border-radius: 0%;
   margin-top: 3%;
 }
