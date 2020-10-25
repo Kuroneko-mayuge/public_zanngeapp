@@ -4,18 +4,17 @@
     <Description v-if="isOnHomePage()" class="description"></Description>
     <h1 align="center" v-if="isOnHomePage()">Zan-ge!</h1>
     <br>
-    <br>
     <v-row>
         <v-col align="center">
           <v-btn @click="makeChatroom" v-if="isOnHomePage()"
-          color="#191970" class="white--text">神父になる
+          color="#191970" class="white--text" large>神父になる
           </v-btn>
         </v-col>
     </v-row>
     <v-row>
       <v-col align="center">
         <v-btn @click="visitChatroom" v-if="isOnHomePage()"
-        color="#191970" class="white--text">懺悔をする</v-btn>
+        color="#191970" class="white--text" large>懺悔をする</v-btn>
       </v-col>
     </v-row>
     <v-row>
@@ -29,6 +28,10 @@
         </div>
       </v-col>
     </v-row>
+    <br>
+    <div id="chapel" align="center">
+      <img src="@/assets/イラスト.png">
+    </div>
     <Loading v-show="loading"></Loading>
     <router-view></router-view>
   </div>
@@ -176,6 +179,13 @@ h1 {
 .loading {
   height: 32px; 
   width: 32px
+}
+
+#chapel img {
+  width: 23%;
+  height: 23%;
+  border-radius: 0%;
+  margin-top: 3%;
 }
 
 </style>
