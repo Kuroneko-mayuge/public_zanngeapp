@@ -61,16 +61,10 @@ img {
     z-index: 0;
 }
 .pos-right {
-    float: right;
-    height: 32px;
-    width: 32px;
-}
-.pos-right-btn {
-    position:absolute;
-    right:80px;
-    top:10px;
-    height: 32px;
-    width: 32px;
+  float: right;
+  height: 3%;
+  width: 3%;
+  margin-right: 1.5%;
 }
 
 .line-up {

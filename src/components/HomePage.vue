@@ -19,7 +19,7 @@
     </v-row>
     <v-row>
       <v-col align="center">
-        <div v-if="!loadingFlg && !photoURL" class="loading">
+        <div v-if="!loadingFlg && !photoURL" class="heart_loading">
           <Loading/>
         </div>
         <div v-else-if="isOnHomePage()">
@@ -29,10 +29,12 @@
       </v-col>
     </v-row>
     <br>
-    <div id="chapel" align="center">
+    <div id="chapel" align="center" v-if="isOnHomePage()">
       <img src="@/assets/イラスト.png">
     </div>
-    <Loading v-show="loading"></Loading>
+    <div align="center" v-show="loading">
+      <Loading class="main_loading"></Loading>
+    </div>
     <router-view></router-view>
   </div>
 </template>
@@ -153,16 +155,17 @@ export default {
 <style>
 #newcontainer {
   padding: 1%;
-  margin: 1%;
+  margin: 0%;
   width: 100%;
   height: 100%;
+  background-color: #dfdddd;
 }
 
 .heart {
   color: red;
 }
 h1 {
-  font-family: "HGP行書体";
+  font-family: sans-serif;
   font-size: 300%;
   margin: 5%;
   color: #2a6f8f;
@@ -170,20 +173,25 @@ h1 {
 
 .description {
   position: fixed;
-  top: 2%;
+  margin-left: 1.2%;
+  top: 1.3%;
   width: 25%;
   height: 200%;
   z-index: 1;
 }
 
-.loading {
-  height: 32px; 
-  width: 32px
+.heart_loading {
+  height: 3%; 
+  width: 3%;
+}
+.main_loading {
+  height: 20%; 
+  width: 20%;
 }
 
 #chapel img {
-  width: 23%;
-  height: 23%;
+  width: 18%;
+  height: 18%;
   border-radius: 0%;
   margin-top: 3%;
 }
