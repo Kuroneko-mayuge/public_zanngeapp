@@ -145,7 +145,7 @@ export default {
 #him {
   width: 45%;
   margin-left: 48%;
-  margin-right: 5%;
+  margin-right: 2%;
   padding: 1% 10% 1% 1%;
   margin-bottom: 2%;
   white-space: pre-wrap;
