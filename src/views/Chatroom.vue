@@ -118,7 +118,7 @@ export default {
   width: 60%;
   padding: 3%;
   top: 50%;
-  margin-left: 16.5%;
+  margin-left: 17%;
   background: #FFEEFF;
   text-align: center;
 }
@@ -130,7 +130,7 @@ export default {
   width: 100%;
   margin-left: 1%;
   font-size: 15px;
-  overflow: scroll;
+  overflow-y: scroll;
   white-space:normal;
 }
 
