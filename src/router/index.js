@@ -16,12 +16,11 @@ const routes = [
       const nextDoc = firebase.firestore().collection('chatroom').doc(to.params.roomID);
       nextDoc.get()
       .then((doc) => {
-        const checkdata = (doc.data().member.visitor); 
         if(store.getters.hostFlg) {
           next()
         }
         else {
-          if(checkdata === store.getters.uid){
+          if(doc.data().member.visitor === store.getters.uid){
             next()
           }else{
             alert("マッチングエラー")

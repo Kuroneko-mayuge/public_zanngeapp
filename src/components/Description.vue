@@ -94,7 +94,7 @@ a:hover{
 h4{
   margin: 2% 8% 2% 6%;
   padding: 1% 1% 1% 1%;
-  font-size: 12px;
+  font-size: 13px;
 }
 h5{
   margin: 2% 8% 2% 6%;
