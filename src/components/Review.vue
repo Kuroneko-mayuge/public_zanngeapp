@@ -27,7 +27,7 @@ export default {
     StarRate
   },
   computed: {
-    ...mapGetters(['hostFlg'])
+    ...mapGetters(['uid','hostFlg'])
   },
   methods: {
   review: function(){
@@ -39,7 +39,7 @@ export default {
           const targetUserRef = firebase.firestore().collection('users').doc(target_uid);
           targetUserRef.get()
           .then((doc) => {
-            if(doc.exists){
+            if(doc.exists && this.uid != target_uid){
               const nowStatus = doc.data().reviewVal;
               const newStatus = nowStatus + this.value;
               targetUserRef.update({
@@ -60,7 +60,7 @@ export default {
           const targetUserRef = firebase.firestore().collection('users').doc(target_uid);
           targetUserRef.get()
           .then((doc) => {
-            if(doc.exists){
+            if(doc.exists && this.uid != target_uid){
               const nowStatus = doc.data().reviewVal;
               const newStatus = nowStatus + this.value;
               targetUserRef.update({

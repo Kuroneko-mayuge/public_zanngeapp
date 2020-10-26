@@ -168,7 +168,7 @@ h1 {
   font-family: sans-serif;
   font-size: 300%;
   margin: 5%;
-  color: #2a6f8f;
+  color: #222268;
 }
 
 .description {

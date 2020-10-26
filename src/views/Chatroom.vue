@@ -12,6 +12,7 @@
       </div>
     </div>
 
+    <!-- レビュー部分 -->
     <Review v-if="diffTime < 0" class="review_box"></Review>
 
     <!-- コメント送信部分 -->
@@ -58,7 +59,7 @@ export default {
   },
   methods: {
     toHome(){
-      const result = confirm("本当に退出しますか？相手に失礼はありませんか？");
+      const result = confirm("本当に退出しますか？");
       if(result){
         const roomid = this.$route.params.roomID;
         const messageRef = this.$db.doc(roomid).collection('messages');
