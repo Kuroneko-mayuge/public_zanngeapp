@@ -1,4 +1,6 @@
 # zanngeapp
+このアプリは、以下のURLより利用ください
+https://vue-zangeapp.web.app/
 
 ## Project setup
 ```
