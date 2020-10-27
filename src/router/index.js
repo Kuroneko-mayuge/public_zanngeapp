@@ -20,7 +20,7 @@ const routes = [
           next()
         }
         else {
-          if(doc.data().member.visitor === store.getters.uid){
+          if((doc.data().member.visitor) === store.getters.uid){
             next()
           }else{
             alert("マッチングエラー")

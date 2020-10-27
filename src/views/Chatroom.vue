@@ -65,7 +65,7 @@ export default {
         const messageRef = this.$db.doc(roomid).collection('messages');
         const keyid = Math.floor( Math.random() * (999999 + 1 - 1) ) + 1; //forループのための便宜的なkeyid
         const createdTime = new Date();
-        const newItem = { ID:keyid, userID:this.uid, text:"退出しました", createdAt:createdTime };
+        const newItem = { ID:keyid, userID:this.uid, text:"~~退出しました~~", createdAt:createdTime };
         messageRef.add(newItem).then(()=>{location.href="/"});
       }
     },
